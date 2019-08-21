@@ -1,0 +1,26 @@
+<h1>Create a new restaurant</h1>
+
+<%= simple_form_for(@restaurant) do |f| %>
+  <% if @restaurant.errors.any? %>
+    <div class="alert alert-danger">
+      <h3>Please fix these problems:</h3>
+      <ul>
+      <% @restaurant.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form_inputs">
+    <%= f.input :name %>
+    <%= f.input :address %>
+    <%= f.input :phone_number %>
+    <%= f.input :category, collection: ["chinese", "italian", "japanese", "french", "belgian"]  %>
+  </div>
+
+  <div class="form_actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to restaurants list', restaurants_path %>

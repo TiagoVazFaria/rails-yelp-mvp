@@ -1,0 +1,31 @@
+<h1><%= @restaurant.name %></h1>
+
+<p><strong>Address:</strong> <%= @restaurant.address %></p>
+<p><strong>Phone:</strong> <%= @restaurant.phone_number %></p>
+<p><strong>Category:</strong> <%= @restaurant.category %></p>
+
+<%= simple_form_for [@restaurant, @review] do |f| %>
+
+  <div class="form_inputs">
+    <%= f.input :rating %>
+    <%= f.input :content %>
+  </div>
+
+  <div class="form_actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+<div>
+  <h3>REVIEWS</h3>
+  <% @restaurant.reviews.each do |review| %>
+    <div style="background-color: lightgrey;">
+      <p>Rating: <%= "⭐️" * review.rating %></p>
+      <p><%= review.content %></p>
+    </div>
+  <% end %>
+</div>
+
+
+
+
+<%= link_to 'Back to restaurants list', restaurants_path, class: "btn btn-success" %>
